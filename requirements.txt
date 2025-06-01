@@ -1,0 +1,14 @@
+fastapi
+uvicorn
+deepface
+retina-face
+opencv-python-headless
+numpy
+python-multipart
+Pillow
+tensorflow
+keras
+gdown
+tqdm
+pandas
+tf-keras
