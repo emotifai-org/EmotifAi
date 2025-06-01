@@ -6,9 +6,9 @@ opencv-python-headless
 numpy
 python-multipart
 Pillow
-tensorflow
-keras
+tensorflow==2.15.0
+keras==2.15.0
+tf-keras==2.15.0
 gdown
 tqdm
 pandas
-tf-keras
