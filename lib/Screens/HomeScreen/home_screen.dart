@@ -27,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Future<String?> getMoodFromAI(XFile imageFile) async {
     try {
       final uri = Uri.parse(
-        'https://emotifai.onrender.com/detect_emotion/',
+        'http://192.168.101.241:8000/detect_emotion/',
       ); // Local API endpoint
       final request = http.MultipartRequest('POST', uri)
         ..files.add(await http.MultipartFile.fromPath('file', imageFile.path));

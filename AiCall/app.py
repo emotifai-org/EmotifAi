@@ -1,20 +1,9 @@
 from fastapi import FastAPI, File, UploadFile
-from fastapi.middleware.cors import CORSMiddleware
 from deepface import DeepFace
 import shutil
 import numpy as np
-import os
 
 app = FastAPI()
-
-# CORS middleware
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],  # Change to your frontend's URL for better security
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
 
 def convert_emotions_to_float(emotions):
     """Convert all numpy types in the emotions dict to Python floats."""
@@ -43,13 +32,3 @@ async def detect_emotion(file: UploadFile = File(...)):
     except Exception as e:
         print(f"Error: {e}")
         return {"error": str(e)}
-    finally:
-        # Clean up temp file if it exists
-        try:
-            os.remove("temp.jpg")
-        except Exception:
-            pass
-
-@app.get("/")
-def root():
-    return {"message": "Emotifai API is running!"}
