@@ -18,6 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
   String? username;
   bool isLoading = true;
   String? currentMood;
+  bool _isDetecting = false;
 
   Future<XFile?> pickImageFromCamera() async {
     final ImagePicker picker = ImagePicker();
@@ -48,12 +49,15 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> detectMoodFromSelfie() async {
-    setState(() => isLoading = true);
+    setState(() {
+      isLoading = true;
+      currentMood = null;
+    });
 
     try {
       final imageFile = await pickImageFromCamera();
       if (imageFile == null) {
-        setState(() => isLoading = false);
+        setState(() => _isDetecting = false);
         return;
       }
 
@@ -150,7 +154,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   elevation: 1.3,
                   backgroundColor: Colors.white.withOpacity(0.85),
                 ),
-                onPressed: detectMoodFromSelfie,
+                onPressed: _isDetecting ? null : detectMoodFromSelfie,
                 child: Text(
                   'Detect Mood with Selfie',
                   style: GoogleFonts.beVietnamPro(
