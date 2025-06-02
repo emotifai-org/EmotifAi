@@ -155,15 +155,24 @@ class _HomeScreenState extends State<HomeScreen> {
                   backgroundColor: Colors.white.withOpacity(0.85),
                 ),
                 onPressed: _isDetecting ? null : detectMoodFromSelfie,
-                child: Text(
-                  'Detect Mood with Selfie',
-                  style: GoogleFonts.beVietnamPro(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                    color: Colors.black,
-                    letterSpacing: 1,
-                  ),
-                ),
+                child: _isDetecting
+                    ? const SizedBox(
+                        width: 24,
+                        height: 24,
+                        child: CircularProgressIndicator(
+                          color: Colors.black,
+                          strokeWidth: 3,
+                        ),
+                      )
+                    : Text(
+                        'Detect Mood with Selfie',
+                        style: GoogleFonts.beVietnamPro(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                          color: Colors.black,
+                          letterSpacing: 1,
+                        ),
+                      ),
               ),
             ),
             SizedBox(height: 30),
