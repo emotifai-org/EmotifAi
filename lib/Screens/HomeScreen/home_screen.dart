@@ -1,10 +1,12 @@
 import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:emotifai/Screens/get_recommendations.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
+import 'package:emotifai/services/spotify_service.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -14,6 +16,11 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  String? username;
+  bool isLoading = true;
+  String? currentMood;
+  bool _isDetecting = false;
+
   Future<XFile?> pickImage(BuildContext context) async {
     final ImagePicker picker = ImagePicker();
     final source = await showDialog<ImageSource>(
@@ -34,16 +41,6 @@ class _HomeScreenState extends State<HomeScreen> {
     );
     if (source == null) return null;
     return await picker.pickImage(source: source);
-  }
-
-  String? username;
-  bool isLoading = true;
-  String? currentMood;
-  bool _isDetecting = false;
-
-  Future<XFile?> pickImageFromCamera() async {
-    final ImagePicker picker = ImagePicker();
-    return await picker.pickImage(source: ImageSource.camera);
   }
 
   Future<String?> getMoodFromAI(XFile imageFile) async {
@@ -72,7 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
     });
 
     try {
-      final imageFile = await pickImage(context); // Pass context here
+      final imageFile = await pickImage(context);
       if (imageFile == null) {
         setState(() => _isDetecting = false);
         return;
@@ -113,6 +110,32 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     fetchUsername();
+  }
+
+  Future<void> handleRecommendations(BuildContext context, String mood) async {
+    final spotifyAuthService = SpotifyAuthService();
+
+    // Ensure you have a valid access token (handles first-time and returning users)
+    String? accessToken = await spotifyAuthService.ensureSpotifyAccessToken();
+
+    if (accessToken == null) {
+      // User declined Spotify login or something failed
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Spotify authentication required.')),
+      );
+      return;
+    }
+
+    // Navigate to recommendations screen with playlist info
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => RecommendationsScreen(
+          currentMood: currentMood!,
+          accessToken: accessToken,
+        ),
+      ),
+    );
   }
 
   @override
@@ -190,6 +213,36 @@ class _HomeScreenState extends State<HomeScreen> {
                           color: currentMood != null
                               ? Colors.black
                               : Colors.grey,
+                        ),
+                      ),
+              ),
+            ),
+            const Spacer(),
+            SizedBox(
+              width: double.infinity,
+              height: 48,
+              child: FilledButton(
+                style: FilledButton.styleFrom(
+                  elevation: 1.3,
+                  backgroundColor: Colors.white.withOpacity(0.85),
+                ),
+                onPressed: () async {
+                  if (currentMood != null) {
+                    await handleRecommendations(context, currentMood!);
+                  }
+                },
+                child: _isDetecting
+                    ? const CircularProgressIndicator(
+                        color: Colors.black,
+                        strokeWidth: 3,
+                      )
+                    : Text(
+                        'Get Recommendations',
+                        style: GoogleFonts.beVietnamPro(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                          color: Colors.black,
+                          letterSpacing: 1,
                         ),
                       ),
               ),

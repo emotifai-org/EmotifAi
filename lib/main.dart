@@ -1,3 +1,4 @@
+import 'package:emotifai/Screens/HomeScreen/home_screen.dart';
 import 'package:emotifai/Screens/OnBoardingScreen/on_boarding_screen1.dart';
 import 'package:emotifai/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: OnBoardingScreen1(),
+      home: HomeScreen(),
     );
   }
 }
