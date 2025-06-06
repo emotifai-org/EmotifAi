@@ -47,7 +47,7 @@ EmotifAi is a cross-platform Flutter app that recommends Spotify playlists and s
 ## Getting Started
 
 1. **Clone the repo:**
-git clone https://github.com/emotifai-org/emotifai-app.git
+git clone https://github.com/emotifai-org/EmotifAi.git
 cd emotifai-app
 
 
@@ -72,12 +72,6 @@ flutter run
 - DeepFace (Python, FastAPI)
 - Gemini API (Google Cloud)
 - Node.js/Express (Spotify token refresh proxy)
-
----
-
-## License
-
-MIT
 
 ---
 
