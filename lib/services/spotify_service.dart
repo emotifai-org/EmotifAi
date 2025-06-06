@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_web_auth_2/flutter_web_auth_2.dart';
 import 'package:http/http.dart' as http;
 
@@ -63,9 +64,9 @@ Future<List<Map<String, dynamic>>> searchSpotifyPlaylists({
 }
 
 class SpotifyAuthService {
-  final String clientId = '588ce38482a44399bf1f533f6012eacc';
-  final String clientSecret = '240f1de2e33447968d11ce20cf42689e';
-  final String redirectUri = 'emotifai://callback';
+  final String clientId = dotenv.env['SPOTIFY_CLIENT_ID']!;
+  final String clientSecret = dotenv.env['SPOTIFY_CLIENT_SECRET']!;
+  final String redirectUri = dotenv.env['SPOTIFY_REDIRECT_URI']!;
 
   Future<String?> authenticateAndSaveTokens() async {
     final authUrl = Uri.https('accounts.spotify.com', '/authorize', {
@@ -128,7 +129,9 @@ class SpotifyAuthService {
 
   Future<String?> getAccessTokenFromRefreshToken(String refreshToken) async {
     final response = await http.post(
-      Uri.parse('http://192.168.101.241:3000/refresh_token'), // Update this URL
+      Uri.parse(
+        'https://emotifai-backend-spotify.onrender.com/refresh_token',
+      ), // Update this URL
       headers: {'Content-Type': 'application/json'},
       body: json.encode({'refresh_token': refreshToken}),
     );

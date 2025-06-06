@@ -27,3 +27,5 @@ android/app/build/
 android/key.properties
 ios/Pods/
 ios/.generated/
+
+.env

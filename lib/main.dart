@@ -1,10 +1,11 @@
-import 'package:emotifai/Screens/HomeScreen/home_screen.dart';
-import 'package:emotifai/Screens/OnBoardingScreen/on_boarding_screen1.dart';
+import 'package:emotifai/Screens/OnBoardingScreen/onboarding_pageview.dart';
 import 'package:emotifai/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 void main() async {
+  await dotenv.load(fileName: ".env");
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform, // If using flutterfire CLI
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: OnBoardingScreen1(),
+      home: OnboardingPageView(),
     );
   }
 }

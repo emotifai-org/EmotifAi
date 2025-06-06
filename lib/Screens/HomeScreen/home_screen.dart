@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:emotifai/Screens/get_recommendations.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
@@ -73,8 +74,7 @@ class _HomeScreenState extends State<HomeScreen>
   }
 
   Future<String?> getComfortingQuoteGemini(String mood) async {
-    final apiKey =
-        'AIzaSyB97DyTDSBLkgIiyP_MPBesytVj6tgnJkg'; // Replace with your Gemini API key
+    final apiKey = dotenv.env['GEMINI_API_KEY'];
     final url = Uri.parse(
       'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=$apiKey',
     );
@@ -210,7 +210,9 @@ class _HomeScreenState extends State<HomeScreen>
 
   Future<String?> getMoodFromAI(XFile imageFile) async {
     try {
-      final uri = Uri.parse('http://192.168.101.241:8000/detect_emotion/');
+      final uri = Uri.parse(
+        'https://emotifai-backend-emotion.onrender.com/detect_emotion/',
+      );
       final request = http.MultipartRequest('POST', uri)
         ..files.add(await http.MultipartFile.fromPath('file', imageFile.path));
 
