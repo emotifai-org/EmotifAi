@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
@@ -39,12 +40,11 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyC5qdY0LaPaI7ByvqQ4MDzS-N9yz9n3WXc',
+  static final FirebaseOptions android = FirebaseOptions(
+    apiKey: dotenv.env['GEMINI_API_KEY']!,
     appId: '1:755612145255:android:81ebb3abd840c27857a6c2',
     messagingSenderId: '755612145255',
     projectId: 'emotifai-f8878',
     storageBucket: 'emotifai-f8878.firebasestorage.app',
   );
-
 }
