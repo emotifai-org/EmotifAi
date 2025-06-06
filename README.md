@@ -23,10 +23,23 @@ EmotifAi is a cross-platform Flutter app that recommends Spotify playlists and s
 ## Screenshots
 
 ### Onboarding
+![Onboarding 1](screenshots/OnBoardingScreen1.png)
+![Onboarding 2](screenshots/OnBoardingScreen2.png)
+![Onboarding 3](screenshots/OnBoardingScreen3.png)
+![Onboarding 4](screenshots/OnBoardingScreen4.png)
 
+### Authentication 
+![Register](screenshots/RegisterScreen.png)
+![Login](screenshots/LoginScreen.png)
+![Login](screenshots/Loginscreenfeedback.png)
+![Spotify Login](screenshots/SpotifyAuth.png)
 
-### Authentication & Mood Detection
-
+### Mood Detection & Recommendations
+![Mood Input](screenshots/Homescreen.png)
+![Mood Detected](screenshots/OnPressDetectMood.png)
+![Mood Detected](screenshots/OnPressDetectMoodFeedback.png)
+![Playlist Grid](screenshots/RecommendationsScreen.png)
+![Playlist Grid](screenshots/SpotifyPlaylist.png)
 
 ---
 
