@@ -23,23 +23,24 @@ EmotifAi is a cross-platform Flutter app that recommends Spotify playlists and s
 ## Screenshots
 
 ### Onboarding
-![Onboarding 1](screenshots/OnBoardingScreen1.png)
-![Onboarding 2](screenshots/OnBoardingScreen2.png)
-![Onboarding 3](screenshots/OnBoardingScreen3.png)
-![Onboarding 4](screenshots/OnBoardingScreen4.png)
+<img src="screenshots/OnBoardingScreen1.png" width="250"/>
+<img src="screenshots/OnBoardingScreen2.png" width="250"/>
+<img src="screenshots/OnBoardingScreen3.png" width="250"/>
+<img src="screenshots/OnBoardingScreen4.png" width="250"/>
 
 ### Authentication 
-![Register](screenshots/RegisterScreen.png)
-![Login](screenshots/LoginScreen.png)
-![Login](screenshots/Loginscreenfeedback.png)
-![Spotify Login](screenshots/SpotifyAuth.png)
+<img src="screenshots/RegisterScreen.png" width="250"/>
+<img src="screenshots/LoginScreen.png" width="250"/>
+<img src="screenshots/Loginscreenfeedback.png" width="250"/>
+<img src="screenshots/SpotifyAuth.png" width="250"/>
 
 ### Mood Detection & Recommendations
-![Mood Input](screenshots/Homescreen.png)
-![Mood Detected](screenshots/OnPressDetectMood.png)
-![Mood Detected](screenshots/OnPressDetectMoodFeedback.png)
-![Playlist Grid](screenshots/RecommendationsScreen.png)
-![Playlist Grid](screenshots/SpotifyPlaylist.png)
+
+<img src="screenshots/Homescreen.png" width="250"/>
+<img src="screenshots/OnPressDetectMood.png" width="250"/>
+<img src="screenshots/OnPressDetectMoodFeedback.png" width="250"/>
+<img src="screenshots/RecommendationsScreen.png" width="250"/>
+<img src="screenshots/SpotifyPlaylist.png" width="250"/>
 
 ---
 
